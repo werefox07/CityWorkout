@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':feature_list_workout', ':domain'
 rootProject.name='CityWorkout'

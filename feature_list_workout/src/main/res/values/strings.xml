@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">feature_list_workout</string>
+    <string name="title_mock_text">Exercise #1</string>
+    <string name="description_mock_text">Description exercise</string>
+    <string name="list_item_weight">30kg</string>
+    <string name="list_item_time">25 times</string>
+    <string name="list_item_date">12.12.2012</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+
+</resources>
