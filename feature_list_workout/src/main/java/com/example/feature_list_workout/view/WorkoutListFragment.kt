@@ -5,22 +5,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
 import com.example.feature_list_workout.presenter.ViewProtocol
 import com.example.feature_list_workout.presenter.WorkoutListPresenter
 
-class WorkoutListFragment : Fragment(), ViewProtocol {
+class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocol {
     private lateinit var listener: OnListItemClickListener
     private lateinit var adapter: WorkoutAdapter
-    private val presenter = WorkoutListPresenter.getInstance()
+
+    @InjectPresenter
+    lateinit var presenter: WorkoutListPresenter
 
     override fun onStart() {
         super.onStart()
         presenter.attachView(this)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        presenter.detachView(this)
     }
 
     override fun onCreateView(

@@ -1,28 +1,21 @@
 package com.example.feature_list_workout.presenter
 
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import com.example.domain.Workout
 import com.example.domain.WorkoutList
 
-class WorkoutListPresenter private constructor() {
-    companion object {
-        private val instance = WorkoutListPresenter()
-
-        @Synchronized
-        fun getInstance(): WorkoutListPresenter {
-            return instance
-        }
-    }
-
-    private var viewProtocol: ViewProtocol? = null
+@InjectViewState
+class WorkoutListPresenter : MvpPresenter<ViewProtocol>() {
     private val workoutList = getWorkoutList()
 
-    fun attachView(view: ViewProtocol) {
-        viewProtocol = view
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
         showWorkoutList()
     }
 
     private fun showWorkoutList() {
-        viewProtocol?.showWorkoutList(workoutList)
+        viewState.showWorkoutList(workoutList)
     }
 
     private fun getWorkoutList(): ArrayList<Workout> {
