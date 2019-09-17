@@ -21,16 +21,6 @@ class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocol {
     @InjectPresenter
     lateinit var presenter: WorkoutListPresenter
 
-    override fun onStart() {
-        super.onStart()
-        presenter.attachView(this)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        presenter.detachView(this)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
