@@ -1,4 +1,4 @@
-package com.example.feature_list_workout.view
+package com.example.feature_list_workout.list.view
 
 import android.content.Context
 import android.os.Bundle
@@ -11,10 +11,10 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
-import com.example.feature_list_workout.presenter.ViewProtocol
-import com.example.feature_list_workout.presenter.WorkoutListPresenter
+import com.example.feature_list_workout.list.presenter.ViewProtocolList
+import com.example.feature_list_workout.list.presenter.WorkoutListPresenter
 
-class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocol {
+class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolList {
     private lateinit var listener: OnListItemClickListener
     private lateinit var adapter: WorkoutAdapter
 
