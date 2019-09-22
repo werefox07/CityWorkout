@@ -1,27 +1,25 @@
-package com.example.feature_list_workout.view
+package com.example.feature_list_workout.list.view
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
-import com.example.feature_list_workout.presenter.ViewProtocol
-import com.example.feature_list_workout.presenter.WorkoutListPresenter
+import com.example.feature_list_workout.list.presenter.ViewProtocolWorkoutListScreen
+import com.example.feature_list_workout.list.presenter.WorkoutListPresenter
 
-class WorkoutListFragment : Fragment(), ViewProtocol {
+class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolWorkoutListScreen {
     private lateinit var listener: OnListItemClickListener
     private lateinit var adapter: WorkoutAdapter
-    private val presenter = WorkoutListPresenter.getInstance()
 
-    override fun onStart() {
-        super.onStart()
-        presenter.attachView(this)
-    }
+    @InjectPresenter
+    lateinit var presenter: WorkoutListPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,

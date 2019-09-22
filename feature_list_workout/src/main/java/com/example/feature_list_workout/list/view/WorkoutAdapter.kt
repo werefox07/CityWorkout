@@ -1,4 +1,4 @@
-package com.example.feature_list_workout.view
+package com.example.feature_list_workout.list.view
 
 import android.view.LayoutInflater
 import android.view.View
