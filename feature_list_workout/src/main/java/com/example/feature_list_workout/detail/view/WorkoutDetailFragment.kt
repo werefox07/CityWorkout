@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
+
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
-import com.example.feature_list_workout.detail.presenter.ViewProtocolDetail
+import com.example.feature_list_workout.detail.presenter.ViewProtocolWorkoutDetailScreen
 import com.example.feature_list_workout.detail.presenter.WorkoutDetailPresenter
 
-class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolDetail {
+class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailScreen {
 
     @InjectPresenter
     lateinit var presenter: WorkoutDetailPresenter

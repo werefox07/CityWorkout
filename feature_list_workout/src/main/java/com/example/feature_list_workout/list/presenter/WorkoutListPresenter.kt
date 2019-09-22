@@ -6,7 +6,7 @@ import com.example.domain.Workout
 import com.example.domain.WorkoutList
 
 @InjectViewState
-class WorkoutListPresenter : MvpPresenter<ViewProtocolList>() {
+class WorkoutListPresenter : MvpPresenter<ViewProtocolWorkoutListScreen>() {
     private val workoutList = getWorkoutList()
 
     override fun onFirstViewAttach() {

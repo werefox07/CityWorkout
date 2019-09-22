@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 @InjectViewState
-class WorkoutDetailPresenter : MvpPresenter<ViewProtocolDetail>() {
+class WorkoutDetailPresenter : MvpPresenter<ViewProtocolWorkoutDetailScreen>() {
     private var numberExercise = 0
     private lateinit var workout: Workout
     private val disposableBag = CompositeDisposable()

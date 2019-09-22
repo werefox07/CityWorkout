@@ -11,10 +11,10 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
-import com.example.feature_list_workout.list.presenter.ViewProtocolList
+import com.example.feature_list_workout.list.presenter.ViewProtocolWorkoutListScreen
 import com.example.feature_list_workout.list.presenter.WorkoutListPresenter
 
-class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolList {
+class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolWorkoutListScreen {
     private lateinit var listener: OnListItemClickListener
     private lateinit var adapter: WorkoutAdapter
 
