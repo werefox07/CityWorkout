@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
-
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
 import com.example.feature_list_workout.detail.presenter.ViewProtocolWorkoutDetailScreen
 import com.example.feature_list_workout.detail.presenter.WorkoutDetailPresenter
+import java.security.AccessController.getContext
+
 
 class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailScreen {
 
@@ -28,7 +29,9 @@ class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailS
     lateinit var downloadButton: Button
     lateinit var titleExercise: TextView
     lateinit var progressBar: ProgressBar
+    lateinit var progressBarConvertImage: ProgressBar
     lateinit var descriptionExercise: TextView
+    lateinit var convertButton: Button
     private var numberExersice = -1
 
     fun passNumberExercice(workoutIndex: Int) {
@@ -64,6 +67,8 @@ class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailS
         downloadButton = view.findViewById(R.id.share_button)
         progressBar = view.findViewById(R.id.progress_bar)
         descriptionExercise = view.findViewById(R.id.description_exersice)
+        convertButton = view.findViewById(R.id.convert_button)
+        progressBarConvertImage = view.findViewById(R.id.progress_bar_convert_image)
     }
 
     override fun showDetail(workout: Workout) {
@@ -75,10 +80,20 @@ class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailS
             progressBar.visibility = View.VISIBLE
             presenter.downloadDescriptionExercise()
         }
+
+        convertButton.setOnClickListener() {
+            progressBarConvertImage.visibility = View.VISIBLE
+            presenter.convertImageToPng()
+        }
     }
 
     override fun updateDescription(desc: Int) {
         progressBar.visibility = View.INVISIBLE
         descriptionExercise.text = desc.toString()
+    }
+
+    override fun updateInfoConvert(text: String) {
+        progressBarConvertImage.visibility = View.INVISIBLE
+        Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show()
     }
 }

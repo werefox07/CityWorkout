@@ -14,4 +14,5 @@
     <string name="date_text">Date: </string>
     <string name="recods_text">My records</string>
     <string name="title_exercise">Exercise №</string>
+    <string name="convert_image">convert image</string>
 </resources>

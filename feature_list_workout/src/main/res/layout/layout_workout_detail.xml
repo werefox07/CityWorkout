@@ -25,6 +25,19 @@
             android:ellipsize="end"
             android:layout_height="wrap_content" />
 
+        <Button
+            style="@style/WrapContentHW"
+            android:id="@+id/convert_button"
+            android:layout_gravity="center"
+            android:text="@string/convert_image" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_convert_image"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity = "center"
+            android:visibility="invisible"/>
+
         <ImageView
             android:id="@+id/workout_detail_image_view"
             android:layout_width="320dp"
