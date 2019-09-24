@@ -8,7 +8,7 @@ import java.io.IOException
 
 class ImageJpgToPngConverter(private var inputFileDir: String, private var inputFileName: String) {
 
-    fun getPath(): String {
+    private fun getPath(): String {
         if (!inputFileDir.endsWith("/")) {
             inputFileDir += "/"
         }
