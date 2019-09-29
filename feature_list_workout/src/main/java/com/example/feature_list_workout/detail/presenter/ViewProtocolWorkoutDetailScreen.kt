@@ -6,4 +6,5 @@ import com.example.domain.Workout
 interface ViewProtocolWorkoutDetailScreen : MvpView {
     fun showDetail(workout: Workout)
     fun updateDescription(desc: Int)
+    fun updateInfoConvert(text: String)
 }

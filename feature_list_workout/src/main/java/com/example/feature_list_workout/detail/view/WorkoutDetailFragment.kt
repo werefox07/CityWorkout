@@ -7,28 +7,17 @@ import android.view.ViewGroup
 import android.widget.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
-
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
 import com.example.feature_list_workout.detail.presenter.ViewProtocolWorkoutDetailScreen
 import com.example.feature_list_workout.detail.presenter.WorkoutDetailPresenter
+import java.security.AccessController.getContext
+import kotlinx.android.synthetic.main.layout_workout_detail.*
 
 class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailScreen {
 
     @InjectPresenter
     lateinit var presenter: WorkoutDetailPresenter
-
-    lateinit var recordDate: TextView
-    lateinit var recordRepsCount: TextView
-    lateinit var recordWeight: TextView
-    lateinit var weight: TextView
-    lateinit var weightSeekBar: SeekBar
-    lateinit var repsCountEditText: EditText
-    lateinit var saveRecordButton: Button
-    lateinit var downloadButton: Button
-    lateinit var titleExercise: TextView
-    lateinit var progressBar: ProgressBar
-    lateinit var descriptionExercise: TextView
     private var numberExersice = -1
 
     fun passNumberExercice(workoutIndex: Int) {
@@ -41,29 +30,17 @@ class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailS
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.layout_workout_detail, container, false)
-        initUI(root)
-        setListeners()
         return root
     }
 
-    private fun setValues(workout: Workout) {
-        recordDate.text = workout.getFormattedRecordDate()
-        recordRepsCount.text = workout.recordRepsCount.toString()
-        recordWeight.text = workout.recordWeight.toString()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setListeners()
     }
 
-    private fun initUI(view: View) {
-        titleExercise = view.findViewById(R.id.workout_detail_title)
-        recordDate = view.findViewById(R.id.workout_detail_record_date)
-        recordRepsCount = view.findViewById(R.id.workout_detail_record_reps_count)
-        recordWeight = view.findViewById(R.id.workout_detail_record_weight)
-        weight = view.findViewById(R.id.workout_detail_weight)
-        weightSeekBar = view.findViewById(R.id.workout_detail_seek_bar)
-        repsCountEditText = view.findViewById(R.id.workout_detail_reps_count_edit_text)
-        saveRecordButton = view.findViewById(R.id.workout_detail_save_button)
-        downloadButton = view.findViewById(R.id.share_button)
-        progressBar = view.findViewById(R.id.progress_bar)
-        descriptionExercise = view.findViewById(R.id.description_exersice)
+    private fun setValues(workout: Workout) {
+        workout_detail_record_date.text = workout.getFormattedRecordDate()
+        workout_detail_record_reps_count.text = workout.recordRepsCount.toString()
+        workout_detail_record_weight.text = workout.recordWeight.toString()
     }
 
     override fun showDetail(workout: Workout) {
@@ -71,14 +48,24 @@ class WorkoutDetailFragment : MvpAppCompatFragment(), ViewProtocolWorkoutDetailS
     }
 
     private fun setListeners() {
-        downloadButton.setOnClickListener {
-            progressBar.visibility = View.VISIBLE
+        share_button.setOnClickListener {
+            progress_bar.visibility = View.VISIBLE
             presenter.downloadDescriptionExercise()
+        }
+
+        convert_button.setOnClickListener() {
+            progress_bar_convert_image.visibility = View.VISIBLE
+            presenter.convertImageToPng()
         }
     }
 
     override fun updateDescription(desc: Int) {
-        progressBar.visibility = View.INVISIBLE
-        descriptionExercise.text = desc.toString()
+        progress_bar.visibility = View.INVISIBLE
+        description_exersice.text = desc.toString()
+    }
+
+    override fun updateInfoConvert(text: String) {
+        progress_bar_convert_image.visibility = View.INVISIBLE
+        Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show()
     }
 }
