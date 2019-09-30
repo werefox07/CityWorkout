@@ -1,4 +1,4 @@
-<resources>
+<resources>listItemTitleTextView
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

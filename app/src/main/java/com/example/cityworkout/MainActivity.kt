@@ -1,26 +1,20 @@
 package com.example.cityworkout
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.feature_list_workout.detail.view.WorkoutDetailFragment
 import com.example.feature_list_workout.list.view.OnListItemClickListener
-import com.example.feature_list_workout.list.view.WorkoutListFragment
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 class MainActivity : AppCompatActivity(),
     OnListItemClickListener {
-    private lateinit var workoutListFragment : WorkoutListFragment
-    private lateinit var workoutListDetail: WorkoutDetailFragment
+    private val navigator = SupportAppNavigator(this, R.id.content_container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        workoutListFragment = WorkoutListFragment()
-
-        if (savedInstanceState == null) {
-            setFragment(workoutListFragment)
-        }
+        SampleApplication.INSTANCE.getRouter().navigateTo(Screens.Companion.StartWorkoulListScreen())
     }
 
     private fun setFragment(fragment: Fragment) {
@@ -30,9 +24,17 @@ class MainActivity : AppCompatActivity(),
             .commit()
     }
 
-    override fun onItemClicked(index: Int) {
-        workoutListDetail = WorkoutDetailFragment()
-        workoutListDetail.passNumberExercice(index)
-        setFragment(workoutListDetail)
+    override fun onItemClicked(numberExercise: Int) {
+        SampleApplication.INSTANCE.getRouter().navigateTo(Screens.Companion.StartWorkoutDetailScreen(numberExercise))
+    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        SampleApplication.INSTANCE.getNavigatorHolder().setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        SampleApplication.INSTANCE.getNavigatorHolder().removeNavigator()
+        super.onPause()
     }
 }

@@ -48,7 +48,7 @@ class WorkoutAdapter(private val itemClickListener: OnListItemClickListener) :
             recordRepsCount.text = workout.recordRepsCount.toString()
             recordDate.text = workout.getFormattedRecordDate()
             cardView.setOnClickListener {
-                listener.onItemClicked(index)
+                listener.onItemClicked(index + 1)
             }
         }
     }
