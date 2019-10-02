@@ -14,14 +14,9 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        SampleApplication.INSTANCE.getRouter().navigateTo(Screens.Companion.StartWorkoulListScreen())
-    }
-
-    private fun setFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.content_container, fragment)
-            .addToBackStack("")
-            .commit()
+        if (savedInstanceState == null) {
+            SampleApplication.INSTANCE.getRouter().navigateTo(Screens.Companion.StartWorkoulListScreen())
+        }
     }
 
     override fun onItemClicked(numberExercise: Int) {

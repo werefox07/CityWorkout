@@ -10,8 +10,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
-import com.example.feature_list_workout.detail.presenter.ViewProtocolWorkoutDetailScreen
-import com.example.feature_list_workout.detail.presenter.WorkoutDetailPresenter
+import com.example.feature_list_workout.detail.presenter.*
 import java.security.AccessController.getContext
 import kotlinx.android.synthetic.main.layout_workout_detail.*
 
@@ -19,12 +18,15 @@ class WorkoutDetailFragment: MvpAppCompatFragment(), ViewProtocolWorkoutDetailSc
 
     @InjectPresenter
     lateinit var presenter: WorkoutDetailPresenter
-    var numberExercise: Int = 0
+    var numberExercise: Int? = 0
+    val WORKOUT_INDEX = "workoutIndex"
 
     companion object{
         fun getNewInstance(numberExercise: Int): WorkoutDetailFragment {
-            var fragment = WorkoutDetailFragment()
-            fragment.numberExercise = numberExercise
+            val fragment = WorkoutDetailFragment()
+            val arguments = Bundle()
+            arguments.putInt(fragment.WORKOUT_INDEX, numberExercise)
+            fragment.arguments = arguments
             return fragment
         }
     }
@@ -35,6 +37,7 @@ class WorkoutDetailFragment: MvpAppCompatFragment(), ViewProtocolWorkoutDetailSc
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.layout_workout_detail, container, false)
+        numberExercise = getArguments()?.getInt(WORKOUT_INDEX)
         return root
     }
 
