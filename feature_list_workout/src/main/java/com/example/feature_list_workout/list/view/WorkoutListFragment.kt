@@ -12,15 +12,19 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.domain.Workout
 import com.example.feature_list_workout.R
+import com.example.feature_list_workout.di.WorkoutListModule
 import com.example.feature_list_workout.list.presenter.ViewProtocolWorkoutListScreen
 import com.example.feature_list_workout.list.presenter.WorkoutListPresenter
+import javax.inject.Inject
 
 class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolWorkoutListScreen {
     private lateinit var listener: OnListItemClickListener
-    private lateinit var adapter: WorkoutAdapter
 
     @InjectPresenter
     lateinit var presenter: WorkoutListPresenter
+
+    @Inject
+    lateinit var adapter: WorkoutAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +32,7 @@ class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolWorkoutListScree
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.layout_workout_list, container, false)
+        initDagger()
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager
@@ -42,6 +47,10 @@ class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolWorkoutListScree
         }
     }
 
+    private fun initDagger() {
+       val component = DaggerWorkoutListComponent.build()
+           .workoutListModule(WorkoutListModule.)
+    }
 
     override fun onAttach(context: Context) {
         if (context is OnListItemClickListener) {
