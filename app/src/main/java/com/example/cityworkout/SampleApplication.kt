@@ -1,6 +1,7 @@
 package com.example.cityworkout
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
@@ -17,6 +18,8 @@ class SampleApplication: Application() {
         INSTANCE = this
 
         initCicerone()
+        Stetho.initializeWithDefaults(this)
+
     }
 
     private fun initCicerone() {

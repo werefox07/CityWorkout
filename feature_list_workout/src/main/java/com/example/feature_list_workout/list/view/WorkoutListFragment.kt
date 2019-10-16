@@ -31,6 +31,7 @@ class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolWorkoutListScree
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager
+        viewTest = recyclerView
         adapter = WorkoutAdapter(listener)
         recyclerView.adapter = adapter
         return root
@@ -40,6 +41,7 @@ class WorkoutListFragment : MvpAppCompatFragment(), ViewProtocolWorkoutListScree
         fun getNewInstance(): WorkoutListFragment {
             return WorkoutListFragment()
         }
+        lateinit var viewTest: View
     }
 
 
