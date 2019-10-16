@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "635389177834",
+    "firebase_url": "https://workoutcity-d8745.firebaseio.com",
+    "project_id": "workoutcity-d8745",
+    "storage_bucket": "workoutcity-d8745.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635389177834:android:7addeb117c475bd4afcc93",
+        "android_client_info": {
+          "package_name": "com.example.cityworkout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635389177834-ut11tsnvsspqr4tnii56jul5k5kvv5po.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCTFSqf66K0_nY5uWcCJL9Hwf96arsSbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635389177834-ut11tsnvsspqr4tnii56jul5k5kvv5po.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
